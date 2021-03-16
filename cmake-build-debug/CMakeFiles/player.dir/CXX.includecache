@@ -15,6 +15,10 @@ string
 -
 regex
 -
+cstdlib
+-
+ctime
+-
 
 C:/Users/malek/OneDrive/Desktop/player/player.h
 string

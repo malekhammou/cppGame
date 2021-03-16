@@ -174,37 +174,7 @@ istream & operator >> (istream &is, player &p)
  * GETTERS AND SETTERS
  */
 
-const string &player::getName() const {
-    return name;
-}
 
-void player::setName(const string &name) {
-    player::name = name;
-}
-
-int player::getScore() const {
-    return score;
-}
-
-void player::setScore(int score) {
-    player::score = score;
-}
-
-int player::getDamages() const {
-    return damages;
-}
-
-void player::setDamages(int damages) {
-    player::damages = damages;
-}
-
-player *player::getEnemy() const {
-    return enemy;
-}
-
-void player::setEnemy(player *enemy) {
-    player::enemy = enemy;
-}
 void player::chooseWeapon() {
     int random_values[3];
     int damage_bonus;
@@ -244,7 +214,7 @@ void player::chooseWeapon() {
 
 bool player::chooseAction(){
     int choice;
-    cout<<name<<" , it's your turn! What do you want to do?"<<endl;
+    cout<<name<<" What do you want to do?"<<endl;
     cout<<"--------------------------"<<endl;
     cout<<"1-Take a challenge."<<endl;
     cout<<"2-Attack!"<<endl;
@@ -284,6 +254,38 @@ void player::isWinner() {
         cout<<"DRAW.";
 
     }
+}
+
+const string &player::getName() const {
+    return name;
+}
+
+void player::setName(const string &name) {
+    player::name = name;
+}
+
+int player::getScore() const {
+    return score;
+}
+
+void player::setScore(int score) {
+    player::score = score;
+}
+
+int player::getDamages() const {
+    return damages;
+}
+
+void player::setDamages(int damages) {
+    player::damages = damages;
+}
+
+player *player::getEnemy() const {
+    return enemy;
+}
+
+void player::setEnemy(player *enemy) {
+    player::enemy = enemy;
 }
 
 

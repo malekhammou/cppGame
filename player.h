@@ -11,9 +11,6 @@ private:
     int damages;
     player *enemy;
 public:
-     player();
-     player(string name);
-
     const string &getName() const;
 
     void setName(const string &name);
@@ -26,9 +23,15 @@ public:
 
     void setDamages(int damages);
 
-    player * getEnemy() const;
+    player *getEnemy() const;
 
     void setEnemy(player *enemy);
+
+public:
+     player();
+     player(string name);
+
+
     bool attack(player *enemy);
     void challenge();
     void chooseWeapon();

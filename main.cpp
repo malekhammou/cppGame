@@ -2,60 +2,88 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <cstdlib>
+#include <ctime>
 
 int main(){
 
     cout<<"-*-*-*-*-*-*-*-*-*-*-*-*-*-*WELCOME-*-*-*-*-*-*-*-*-*-*-*-*-*-*"<<endl;
-    player p1;
-    player p2;
-    while(p1.getName()=="Unknown" || p2.getName()=="Unknown"){
-        if(p1.getName()=="Unknown"){
-            string name;
-            cout<<"Hey Player1, please enter your name"<<endl;
-            getline(cin,name);
-            if(name!=""&&name!=" "){
-                p1.setName(name);
-            }
-
-        }
-        else{
-            string name;
-            cout<<"Hey Player2, please enter your name"<<endl;
-            getline(cin,name);
-            if(name!=""&&name!=" "){
-                p2.setName(name);
-            }
-
-        }
-    }
-    cout<<endl;
-    cout<<"-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"<<endl;
-    cout<<"Great! Hi "<<p1.getName()<<" and "<<p2.getName()<<endl;
-    cout<<"-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"<<endl;
     cout<<endl;
 
-    p1.setEnemy(&p2);
-    p2.setEnemy(&p1);
-    bool winnerExists=false;
-    for (int i = 0; i < 6; ++i) {
-        if(i%2==0){
-            if(p1.isDead()){
-                cout<<p2.getName()<<" wins."<<endl;
-                winnerExists= true;
-                break;
-            }
-            else
-            p1.chooseAction();
-        }
-        else{
-            if(p2.isDead()){
-                cout<<p1.getName()<<" wins."<<endl;
-                winnerExists= true;
-                break;
-            }
-             else p2.chooseAction();
+    int players_number=1;
+    int actions_number=1;
+    cout << "How many players are there? please enter an even number. "<<endl;
+
+    while (!(cin >> players_number) || players_number<=1 || players_number>5 ||(players_number%2)!=0)
+    {
+        cout << "Please enter a valid number";
+        cin.clear();
+        cin.ignore(132, '\n');
+    }
+
+    cout << "How many actions for each player? "<<endl;
+    while (!(cin >> actions_number) || actions_number<=1 || actions_number>5)
+    {
+        cout << "Please enter a valid number";
+        cin.clear();
+        cin.ignore(132, '\n');
+    }
+    player players[players_number];
+    for (int i = 0; i <players_number ;i++) {
+        string name;
+        cout<<"Hey Player "<<i+1<<", please enter your name"<<endl;
+        fflush(stdin);
+        getline(cin,name);
+        if(name!=""&&name!=" "){
+            player p(name);
+            players[i]=p;
         }
     }
-     if(winnerExists==false)p1.isWinner();
+
+    for (int i = 0; i < players_number; i=i+2) {
+            players[i].setEnemy(&players[i+1]);
+            players[i+1].setEnemy(&players[i]);
+    }
+    cout<<"-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"<<endl;
+    cout<<endl;
+    cout<<"-*-*-*-*-*-*-*-*-*-*-*-*-*-* MAIN COMPETITON BOARD-*-*-*-*-*-*-*-*-*-*-*-*-*-*"<<endl;
+    cout<<endl;
+    cout<<"-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"<<endl;
+
+    for (int i = 0; i <players_number ; i+=2) {
+           cout<<players[i].getName()<<" VS "<<players[i].getEnemy()->getName()<<endl;
+    }
+    cout<<"-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"<<endl;
+    cout<<"-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"<<endl;
+    cout<<endl;
+    int actions=0;
+    while(actions<actions_number){
+        for (int i = 0; i < players_number; i++) {
+             if(players[i].isDead()){
+                  cout<<players[i].getName()<<" ELIMINATED."<<endl;
+             }
+             else
+            players[i].chooseAction();
+
+        }
+        actions++;
+    }
+    cout<<"-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"<<endl;
+    cout<<endl;
+    cout<<"-*-*-*-*-*-*-*-*-*-*-*-*-*-* COMPETITION RESULT"
+          "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"<<endl;
+    cout<<endl;
+    cout<<"-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"<<endl;
+    for (int i = 0; i < players_number;i++) {
+        cout<<players[i].getName()<<"'s score is "<<players[i].getScore()<<" points."<<endl;
+    }
+
+
+
+
+
+
+
+
     return 0;
 }
