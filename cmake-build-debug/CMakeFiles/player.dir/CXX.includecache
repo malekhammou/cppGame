@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/malek/OneDrive/Desktop/player/main.cpp
+player.h
+C:/Users/malek/OneDrive/Desktop/player/player.h
+iostream
+-
+string
+-
+regex
+-
+
+C:/Users/malek/OneDrive/Desktop/player/player.h
+string
+-
+

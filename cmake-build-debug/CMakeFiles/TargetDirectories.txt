@@ -1,0 +1,3 @@
+C:/Users/malek/OneDrive/Desktop/player/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/malek/OneDrive/Desktop/player/cmake-build-debug/CMakeFiles/player.dir
+C:/Users/malek/OneDrive/Desktop/player/cmake-build-debug/CMakeFiles/rebuild_cache.dir
