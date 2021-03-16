@@ -37,7 +37,13 @@ bool player::attack(player *enemy){
     }
     else return false;
 }
-
+player player::operator+(const player &p) const {
+    player team;
+    team.damages=damages+p.getDamages();
+    team.score=score+p.getScore();
+    team.name=name+" && "+p.getName();
+    return team;
+}
 
 void player::displayDamages() {
     cout<<name<<" damages: "<<damages<<endl;

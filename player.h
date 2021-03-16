@@ -33,6 +33,7 @@ public:
 
 
     bool attack(player *enemy);
+    player operator +(const player &p) const;
     void challenge();
     void chooseWeapon();
     bool chooseAction();
